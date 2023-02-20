@@ -17,19 +17,22 @@ from candidatesmasher import CandidateSmasher
 def read_graph(file):
     start_time = time.time()
     g = Graph()
-    g.parse(file)
+    g.parse(data=file,format="json-ld")
     
     logging.critical(" reading graph--- %s seconds ---" % (time.time() - start_time)) 
     return g
 
 spek_bs =open(sys.argv[1])
 template = open(sys.argv[2])
-f3json=json.load(spek_bs)
-f4json=json.load(template)
+spek_bs=json.load(spek_bs)
+template=json.load(template)
 
 #print(type(content))
-BS=read_graph(f3json)
-template=read_graph(f4json)
+spek_bs =json.dumps(spek_bs)
+template =json.dumps(template)
+#print(type(content))
+BS=read_graph(spek_bs)
+template=read_graph(template)
 
 
 
@@ -37,3 +40,9 @@ cs=CandidateSmasher(BS,template)
 df_graph=cs.get_graph_type()
 df_template=cs.get_template_data()
 CS=cs.create_candidates(df_graph,df_template)
+
+op=CS.serialize(format='json-ld', indent=4)
+#print(op)
+f = open("spek_cs.json", "w")
+f.write(op)
+f.close()
