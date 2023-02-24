@@ -39,6 +39,7 @@ template=read_graph(template)
 cs=CandidateSmasher(BS,template)
 df_graph=cs.get_graph_type()
 df_template=cs.get_template_data()
+# 
 CS=cs.create_candidates(df_graph,df_template)
 
 op=CS.serialize(format='json-ld', indent=4)
