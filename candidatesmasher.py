@@ -366,7 +366,7 @@ class CandidateSmasher:
         #     self.df["template_type_dicts3"]=0
         # if "template_type_dicts4" in self.df.columns:
         #     self.df["template_type_dicts4"]=0
-        # self.df.to_csv("template.csv")
+        self.df.to_csv("template.csv")
     
         return self.df
    
@@ -453,6 +453,10 @@ class CandidateSmasher:
                             for x in range(len(v)):
                                 self.a.add((ov,self.cp23,v[x]))
                             self.a.add((ov,self.cp24,ag))
+                        a35=BNode("-p1")
+                        self.a.add((oq,self.cp26,a35))
+                        self.a36=URIRef(row["index"])
+                        self.a.add((oq,self.cp27,self.a36))
                             
                
         return self.a
